@@ -3,7 +3,8 @@
 :root {
     --color-background: rgb(236,236,236);
     --color-header: rgb(230,230,230);
-    --color-1: rgb(110,170,170);
+    --color-1: rgb(90, 150, 140);
+    --color-2: rgb(110,170,170);
     --color-greyed-out: rgba(100,100,100,0.7);
     --font-p: "Montserrat", sans-serif;
     --font-h: "Work Sans", sans-serif;
@@ -11,7 +12,7 @@
     --height-header: 7rem;
     --height-footer: 10rem;
     --width-side-spacing: 1rem;
-    --width-avatar: 310px;
+    --width-avatar: 240px;
     --width-avatar-margin: 2rem;
     --height-avatar-margin: 1rem;
     --margin-top-section: 5rem;
@@ -97,9 +98,13 @@ h4 {
     font-weight: inherit;
 }
 
-p {
+p, li {
     font-size: 1.6rem;
 }
+li::marker {
+    color: var(--color-1);
+}
+
 
 /* HEADER */
 
