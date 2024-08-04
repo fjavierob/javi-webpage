@@ -13,9 +13,13 @@
     --height-footer: 10rem;
     --width-side-spacing: 1rem;
     --width-avatar: 240px;
+    --width-footer-cols: 260px;
+    --width-footer-cols-1: 220px;
+    --width-footer-cols-2: 280px;
+    --width-footer-cols-3: 220px;
     --width-avatar-margin: 2rem;
     --height-avatar-margin: 1rem;
-    --margin-top-section: 5rem;
+    --margin-top-section: 3.4rem;
     --icon-color-location: rgb(200,0,0);
     --icon-color-email: rgb(0, 80, 180);
     --icon-color-linkedin: rgb(0, 100, 210);
@@ -31,28 +35,83 @@ html {
     scroll-behavior: smooth;
 }
 
-/* MEDIA QUERIES */
-@media only screen and (width > 780px) {
-    #avatar {
-        float: left;
-        margin-right: var(--width-avatar-margin);
-        margin-bottom: var(--height-avatar-margin);
-    }
+/* SIZING & MEDIA QUERIES */
 
-    #header-container, main {
-        width:      calc(
-                        100% - 
-                        2*var(--width-side-spacing));
-        max-width:  calc(
-                        var(--width-page-1) - 
-                        2*var(--width-side-spacing));
-    }
-
+main, #header-container, #footer-container  {
+    width:      calc(
+                    100% - 
+                    2*var(--width-side-spacing));
+    max-width:  calc(
+                    var(--width-page-1) - 
+                    2*var(--width-side-spacing));
+}
+main, header, footer {
+    padding: 0 var(--width-side-spacing);
+}
+main {
+    margin: 0 auto 0 auto;
 }
 
-@media only screen and (width <= 780px) {
-    body {
-        color: red;
+
+@media only screen and (width > 600px) {
+    #section-intro {
+        margin-top: calc(
+                        var(--margin-top-section) +
+                        2rem);
+    }
+    #section-intro-container {
+        display:grid;
+        grid-template-columns: var(--width-avatar) 1fr;
+        column-gap: 2rem;
+    }
+}
+
+@media only screen and (width >= 864px) {
+    #footer-container {
+        display: grid;
+        padding-left: 0.4rem;
+        grid-template-columns: repeat( auto-fit, 
+                                        minmax(var(--width-footer-cols), 1fr));
+        grid-template-columns: 12fr 12fr minmax(var(--width-footer-cols), 16fr) 14fr;
+    }
+}
+@media only screen and (600px < width < 864px) {
+    #footer-container {
+        display: grid;
+        padding-left: 0.4rem;
+        grid-template-columns: 6fr 28fr 28fr 6fr;
+        justify-content: space-between;
+    }
+    .footer-item:nth-child(odd) {
+        grid-column: 2 / 3;
+    }
+    .footer-item:nth-child(even) {
+        grid-column: 3 / 4;
+        margin-left: auto;
+    }
+    .footer-item:nth-child(2) {
+        padding-right: 42px;
+    }
+}
+
+@media only screen and (width <= 600px) {
+    #avatar {
+        display: block;
+        margin: 0 auto;
+    }
+    #intro-text {
+        margin-top: calc(0.6 * var(--margin-top-section));
+    }
+    #intro-title h1, #intro-title p {
+        text-align: center;
+    }
+    #footer-container {
+        display: grid;
+        padding-left: 0.4rem;
+        grid-template-columns: 1fr var(--width-footer-cols) 1fr;
+    }
+    .footer-item {
+        grid-column: 2 / 3;
     }
 }
 
@@ -126,7 +185,6 @@ header, footer {
             var(--color-header) 80%,
             var(--color-background) 100%
             );
-        padding: 0 var(--width-side-spacing);
         width: 100%; 
 }
 
@@ -182,18 +240,6 @@ header, footer {
 
 /* MAIN - INTRO */
 
-main {
-    margin: 0 auto 0 auto;
-}
-
-/*
-#section-intro {
-    display:grid;
-    grid-template-columns: var(--width-avatar) 1fr;
-    column-gap: 2rem;
-}
-*/
-
 #avatar {
     width: var(--width-avatar);
     border-radius: 4%;
@@ -219,18 +265,16 @@ main {
     font-size: 1.2em;
 }
 
+/*
 #intro-title > p .small {
     font-size: 1.8rem;
     padding-bottom: 4rem;
     display: block;
     position: absolute;
     top: 0.26rem;
-    left:   calc(
-                var(--width-avatar) + 
-                var(--width-avatar-margin) +
-                10.4rem
-            );
+    left: 10.4rem;
 }
+*/
 
 #ipa-javi {
     color: var(--color-greyed-out);
@@ -247,7 +291,10 @@ main {
     margin-top: 3rem;
     background-color: white;
     padding: 1em 3em 2em 3em;
-    width: 70%;
+    max-width: 70%;
+    min-width: calc(
+                    500px - 
+                    2*var(--width-side-spacing));
     border-radius: 2em;
 }
 .form-input > label {
@@ -298,11 +345,13 @@ footer {
     height: 100%;
     width: 100%;
     border-top: 1px solid var(--color-1);
-    padding-left: 0.5rem;
+    padding-top: 2rem;
+    /*
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items:flex-start;
+    */
     margin: 0 auto 0 auto;
 }
 
@@ -327,6 +376,10 @@ footer {
 
 .location {
     color: var(--icon-color-location);
+}
+
+a.footer-item:hover > p {
+    text-decoration:underline;
 }
 
 .email {
