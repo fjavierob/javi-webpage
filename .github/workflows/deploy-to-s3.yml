@@ -23,15 +23,15 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with: 
-          role-to-assume: ${{ secrets.AWS_JAVIQT-COM_ASSUME_ROLE_ARN }}
-          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          role-to-assume: ${{ secrets.AWS_JAVIQTCOM_ASSUME_ROLE_ARN }}
+          role-session-name: GitHub-Actions-OIDC
           aws-region: ${{ env.AWS_REGION }}
       - name: Deploy web to AWS S3 bucket
         run: |
-          aws s3 sync web/ s3://${{ secrets.AWS_JAVIQT-COM_S3 }}
+          aws s3 sync web/ s3://${{ secrets.AWS_JAVIQTCOM_S3 }}
       - name: Invalidate CloudFront cache
         run: | 
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_JAVIQT-COM_CLOUDFRONT }} --paths "/*"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_JAVIQTCOM_CLOUDFRONT }} --paths "/*"
 
 
 

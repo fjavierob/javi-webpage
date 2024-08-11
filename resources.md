@@ -14,6 +14,9 @@ Resources that I have referenced to build this mini project.
 ### GitHub Actions
 - [Serverless First: Why I switched from AWS CodePipeline to GitHub Actions](https://serverlessfirst.com/switch-codepipeline-to-github-actions/)
 - [Michael Gasch: ci-demo-app](https://github.com/embano1/ci-demo-app/tree/main)
+- [Medium - Kyle Calica: Official AWS for Github Actions](https://medium.com/swlh/official-aws-for-github-actions-21b4cb39b8d3)
+- [Github - aws-actions](https://github.com/aws-actions)
+- [AWS Security Blog: Use IAM roles to connect GitHub Actions to actions in AWS](https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
 - [YouTube: CI/CD from GitHub to AWS | Deploy static website from GitHub to S3 | GitHub Actions](https://www.youtube.com/watch?v=cwX3XAx3CGg)
 - [Medium - AWS in Plain English: Deploying a Web App on AWS S3 Using GitHub Actions](https://aws.plainenglish.io/deploying-a-web-app-on-aws-s3-using-github-actions-d7031160acac)
 - [Medium - StaubRacing: Setting up GitHub Actions for AWS S3 Integration](https://staubracing.medium.com/setting-up-git-actions-for-aws-s3-integration-bb0111bc7de8)
