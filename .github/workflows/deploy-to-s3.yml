@@ -1,0 +1,37 @@
+name: Deploy to AWS S3 bucket
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'web/**'
+
+env:
+  AWS_REGION: eu-central-1
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with: 
+          role-to-assume: ${{ secrets.AWS_JAVIQT-COM_ASSUME_ROLE_ARN }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Deploy web to AWS S3 bucket
+        run: |
+          aws s3 sync web/ s3://${{ secrets.AWS_JAVIQT-COM_S3 }}
+      - name: Invalidate CloudFront cache
+        run: | 
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_JAVIQT-COM_CLOUDFRONT }} --paths "/*"
+
+
+
